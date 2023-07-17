@@ -17,7 +17,7 @@ private:
     static int nextId;
     int id;
     string description;
-    string notes; // New member to store additional notes
+    string notes; 
     bool completed;
     time_t dueDateTime;
     int priority;
@@ -27,7 +27,7 @@ public:
 
     int getId() const { return id; }
     string getDescription() const { return description; }
-    string getNotes() const { return notes; } // New getter function for notes
+    string getNotes() const { return notes; } 
     bool isCompleted() const { return completed; }
     time_t getDueDateTime() const { return dueDateTime; }
     int getPriority() const { return priority; }
@@ -41,7 +41,7 @@ public:
         dueDateTime = mktime(&timeinfo);
     }
     void setPriority(int newPriority) { priority = newPriority; }
-    void setNotes(const string &newNotes) { notes = newNotes; } // New setter function for notes
+    void setNotes(const string &newNotes) { notes = newNotes; } 
 };
 
 int TodoTask::nextId = 1;
@@ -70,7 +70,7 @@ public:
         cin >> priority;
         newItem.setPriority(priority);
 
-        cin.ignore(); // Ignore the newline character after inputting the priority
+        cin.ignore(); 
 
         string notes;
         cout << "Add additional notes (press Enter to leave blank): ";
@@ -96,15 +96,15 @@ public:
     {
         switch (sortOption)
         {
-        case 1: // Sort by due date
+        case 1: 
             todoItems.sort([](const TodoTask &a, const TodoTask &b)
                            { return a.getDueDateTime() < b.getDueDateTime(); });
             break;
-        case 2: // Sort by priority
+        case 2: 
             todoItems.sort([](const TodoTask &a, const TodoTask &b)
                            { return a.getPriority() < b.getPriority(); });
             break;
-        case 3: // Sort by completion status (completed tasks first)
+        case 3:
             todoItems.sort([](const TodoTask &a, const TodoTask &b)
                            { return a.isCompleted() > b.isCompleted(); });
             break;
@@ -146,26 +146,25 @@ public:
                     dueDateTimeStr = buffer;
                 }
 
-                string priorityColor = ""; // Store the escape sequence for the color
+                string priorityColor = ""; 
                 if (item.getPriority() >= 1 && item.getPriority() <= 5)
                 {
-                    // You can set custom colors based on priority levels
                     switch (item.getPriority())
                     {
                     case 1:
-                        priorityColor = "\x1B[31m"; // Red
+                        priorityColor = "\x1B[31m"; 
                         break;
                     case 2:
-                        priorityColor = "\x1B[33m"; // Yellow
+                        priorityColor = "\x1B[33m"; 
                         break;
                     case 3:
-                        priorityColor = "\x1B[32m"; // Green
+                        priorityColor = "\x1B[32m"; 
                         break;
                     case 4:
-                        priorityColor = "\x1B[34m"; // Blue
+                        priorityColor = "\x1B[34m"; 
                         break;
                     case 5:
-                        priorityColor = "\x1B[35m"; // Purple
+                        priorityColor = "\x1B[35m"; 
                         break;
                     }
                 }
@@ -238,7 +237,7 @@ int main()
             cout << "Invalid choice!" << endl;
             cout << "Please try again." << endl;
 #ifdef _WIN32
-            Sleep(2000); // Sleep for 2 seconds (2000 milliseconds)
+            Sleep(2000); 
 #endif
             cout << endl;
             break;
